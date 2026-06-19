@@ -47,22 +47,58 @@
  *   isAnyWaitlisted(passengers)          // => true/false
  *   areAllConfirmed(passengers)          // => true/false
  */
+/**
+ * 🚂 Train Coach Finder - Array Search & Check
+ */
+
 export function findPassenger(passengers, name) {
-  // Your code here
+  if (!Array.isArray(passengers) || typeof name !== 'string') {
+    return undefined;
+  }
+
+  // Callback function ka use karke case-insensitive match kiya
+  return passengers.find(
+    (passenger) => passenger.name.toLowerCase() === name.toLowerCase()
+  );
 }
 
 export function getPassengerIndex(passengers, name) {
-  // Your code here
+  if (!Array.isArray(passengers) || typeof name !== 'string') {
+    return -1;
+  }
+
+  // Yahan bhi callback function aur case-insensitive matching hogi
+  return passengers.findIndex(
+    (passenger) => passenger.name.toLowerCase() === name.toLowerCase()
+  );
 }
 
 export function isAnyWaitlisted(passengers) {
-  // Your code here
+  // Agar array nahi hai ya empty hai toh false return karo
+  if (!Array.isArray(passengers) || passengers.length === 0) {
+    return false;
+  }
+
+  // .some() check karega ki kya KOI BHI waitlisted hai
+  return passengers.some((passenger) => passenger.status === 'waitlisted');
 }
 
 export function areAllConfirmed(passengers) {
-  // Your code here
+  // Agar array nahi hai ya empty hai toh false return karo
+  if (!Array.isArray(passengers) || passengers.length === 0) {
+    return false;
+  }
+
+  // .every() check karega ki kya SABHI confirmed hain
+  return passengers.every((passenger) => passenger.status === 'confirmed');
 }
 
 export function getWaitlistedPassengers(passengers) {
-  // Your code here
+  // Agar array nahi hai toh empty array return karo
+  if (!Array.isArray(passengers)) {
+    return [];
+  }
+
+  // .filter() sirf waitlisted passengers ki nayi list bana kar dega
+  return passengers.filter((passenger) => passenger.status === 'waitlisted');
 }
